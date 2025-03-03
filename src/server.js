@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000;
 // CORS configuration to allow Netlify frontend
 app.use(cors({
   origin: 'https://eloquent-biscotti-2bc0c3.netlify.app', // No trailing slash
-  methods: ['POST', 'GET', 'OPTIONS'],
+  methods: ['POST', 'GET', 'PUT',  'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 

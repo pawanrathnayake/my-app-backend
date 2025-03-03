@@ -9,8 +9,14 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+// CORS configuration to allow Netlify frontend
+app.use(cors({
+  origin: 'https://your-netlify-app-url.netlify.app', // Replace with your actual deployed Netlify URL
+  methods: ['POST', 'GET', 'OPTIONS'], // Allow specific methods if necessary
+  allowedHeaders: ['Content-Type', 'Authorization'] // Ensure headers like Content-Type and Authorization are allowed
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Root route

@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
   favoriteSport: { type: String },
   preferredMusic: { type: String },
   preferredMovies: { type: String },
+  profileImage: { type: String }
 });
 
 module.exports = mongoose.model("User", userSchema);

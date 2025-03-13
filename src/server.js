@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes"); // Update this path based on where your routes are
+const imageUploadRoutes = require("./routes/imageUploadRoutes");
+
 
 dotenv.config();
 
@@ -18,6 +20,7 @@ app.use(cors({
 
 // Middleware
 app.use(express.json());
+app.use(imageUploadRoutes);
 
 // Root route
 app.get("/", (req, res) => {

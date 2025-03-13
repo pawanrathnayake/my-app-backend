@@ -14,11 +14,10 @@ const userSchema = new mongoose.Schema({
   maritalStatus: { type: String },
   spouseFirstName: { type: String },
   spouseLastName: { type: String },
-  hobbies: { type: [String] },
-  favoriteSport: { type: [String] },
-  preferredMusic: { type: [String] },
-  preferredMovies: { type: [String] },
-  profileImage: { type: String },
+  hobbies: { type: String },
+  favoriteSport: { type: String },
+  preferredMusic: { type: String },
+  preferredMovies: { type: String },
 });
 
 module.exports = mongoose.model("User", userSchema);

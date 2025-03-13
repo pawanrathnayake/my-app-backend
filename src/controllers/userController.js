@@ -1,10 +1,11 @@
-const User = require('../models/User');
-const path = require('path');
+// userController.js
+
+const User = require('../models/User');  // User model to interact with MongoDB
 
 // Get the user profile
 const getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);  // Get the user from the database by ID
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     res.json({
@@ -24,7 +25,6 @@ const getProfile = async (req, res) => {
       favoriteSport: user.favoriteSport,
       preferredMusic: user.preferredMusic,
       preferredMovies: user.preferredMovies,
-      profileImage: user.profileImage ? `${req.protocol}://${req.get('host')}/uploads/${user.profileImage}` : null, // Return full URL
     });
   } catch (err) {
     console.error(err);
@@ -32,17 +32,10 @@ const getProfile = async (req, res) => {
   }
 };
 
-// Update the user profile (including image upload)
+// Update the user profile
 const updateProfile = async (req, res) => {
   try {
-    const updateData = { ...req.body };
-
-    // Check if an image is uploaded
-    if (req.file) {
-      updateData.profileImage = req.file.filename; // Store filename in DB
-    }
-
-    const user = await User.findByIdAndUpdate(req.user.id, updateData, { new: true });
+    const user = await User.findByIdAndUpdate(req.user.id, req.body, { new: true });  // Update the user's profile
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     res.json({
@@ -62,7 +55,6 @@ const updateProfile = async (req, res) => {
       favoriteSport: user.favoriteSport,
       preferredMusic: user.preferredMusic,
       preferredMovies: user.preferredMovies,
-      profileImage: user.profileImage ? `${req.protocol}://${req.get('host')}/uploads/${user.profileImage}` : null, // Return full URL
     });
   } catch (err) {
     console.error(err);
